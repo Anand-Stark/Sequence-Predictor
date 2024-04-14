@@ -1,0 +1,1 @@
+export {default as dna} from "./img/DNA.jpg"
