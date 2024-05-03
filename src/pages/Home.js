@@ -103,6 +103,7 @@ function Home() {
 
                 try {
                     const response = await axios.post(apiEndpoint, { sequence });
+                    console.log(response)
                     setFamily(response.data.prediction);
                     setModalVisible(true);
                 } catch (error) {
@@ -117,7 +118,12 @@ function Home() {
 
                 try {
                     const response = await axios.post(apiEndpoint, { sequence });
-                    setFamily(response.data.sars_cov_2_prediction);
+                    if (response.data.sars_cov_2_prediction === 1) {
+                        setFamily("Sars Covid 2");
+                    } 
+                    else {
+                        setFamily("Not Sars Covid 2");
+                    }
                     setModalVisible(true);
                 } catch (error) {
                     console.error('Error fetching data:', error);
