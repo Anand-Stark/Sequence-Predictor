@@ -94,32 +94,55 @@ function Home() {
         event.preventDefault();
 
         let sequence = '';
-        let apiEndpoint = '';
+        let apiEndpoint = 'http://localhost:5000/predict';
         switch (formNumber) {
             case 1:
                 sequence = sequence1;
-                apiEndpoint = 'http://localhost:3000/api/getFamily1';
+
+                console.log(sequence);
+
+                try {
+                    const response = await axios.post(apiEndpoint, { sequence });
+                    setFamily(response.data.prediction);
+                    setModalVisible(true);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+                
                 break;
             case 2:
                 sequence = sequence2;
-                apiEndpoint = 'http://localhost:3000/api/getFamily2';
+
+                console.log(sequence);
+
+                try {
+                    const response = await axios.post(apiEndpoint, { sequence });
+                    setFamily(response.data.sars_cov_2_prediction);
+                    setModalVisible(true);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+                
                 break;
             case 3:
                 sequence = sequence3;
-                apiEndpoint = 'http://localhost:3000/api/getFamily3';
+
+                console.log(sequence);
+                
+                try {
+                    const response = await axios.post(apiEndpoint, { sequence });
+                    setFamily(response.data.coronavirus_prediction);
+                    setModalVisible(true);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+
                 break;
             default:
                 break;
         }
 
         // Call the API
-        try {
-            const response = await axios.post(apiEndpoint, { sequence });
-            setFamily(response.data.family);
-            setModalVisible(true);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
     };
 
     return (
