@@ -1,6 +1,7 @@
 *.xlsx
 /images/
 /images_sarscov2/
+/images_coronavirus_6class/
 /sars-Cov2_jpg/
 /sars-riboviria/
 /fasta/
